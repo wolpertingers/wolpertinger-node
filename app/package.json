@@ -1,0 +1,26 @@
+{
+  "name": "wolpertinger-node",
+  "version": "0.0.1",
+  "description": "Node.js backend for the Wolpertinger project.",
+  "main": "src/server.js",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon bin/wwww"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ingokuba/wolpertinger-node.git"
+  },
+  "author": "Ingo Kuba",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ingokuba/wolpertinger-node/issues"
+  },
+  "homepage": "https://github.com/ingokuba/wolpertinger-node#readme"
+}
