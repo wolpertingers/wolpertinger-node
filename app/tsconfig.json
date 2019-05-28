@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "lib": ["es2015", "es2016", "dom"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es6",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "rootDirs": ["src"],
+    "outDir": "dist"
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["./node_modules", "./dist", "./**/*.stories.ts"]
+}
