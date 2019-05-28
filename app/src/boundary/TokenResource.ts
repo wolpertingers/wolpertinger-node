@@ -5,11 +5,19 @@ import basicAuth = require("express-basic-auth");
 import { Guid } from "guid-typescript";
 
 const router = Router();
-const auth = basicAuth({
-  users: {
-    admin: "admin"
-  }
-});
+const auth = basicAuth({ authorizer: adminAuthorizer });
+
+/**
+ * Authorizes a user to the Rest-API.
+ * @param username Name of the user
+ * @param password Entered password
+ */
+function adminAuthorizer(username: string, password: string) {
+  return (
+    basicAuth.safeCompare(username, process.env.ADMIN_NAME) &&
+    basicAuth.safeCompare(password, process.env.ADMIN_PASSWORD)
+  );
+}
 
 /**
  * Get token by value.
@@ -27,7 +35,7 @@ router.get("/:value", (req, res) => {
 /**
  * Create random token.
  */
-router.use(auth).post("/", (req, res, next) => {
+router.use(auth).post("/", (req, res) => {
   Token.create({
     value: Guid.create().toString()
   })
@@ -42,7 +50,7 @@ router.use(auth).post("/", (req, res, next) => {
 /**
  * Get all tokens.
  */
-router.use(auth).get("/", (req, res, next) => {
+router.use(auth).get("/", (req, res) => {
   Token.findAll()
     .then(tokens => {
       return res.status(Status.OK).send(tokens);
