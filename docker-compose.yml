@@ -1,5 +1,14 @@
 version: "3.5"
 services:
+  mariadb:
+    container_name: wolpertinger-mariadb
+    image: mariadb:10.3.5
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --init-connect='SET NAMES UTF8;'
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: wolpertinger
+      MYSQL_ROOT_PASSWORD: wolpertinger
   server:
     container_name: wolpertinger-node
     build:
@@ -7,3 +16,6 @@ services:
       dockerfile: ../Dockerfile
     ports:
       - 8080:8080
+networks:
+  default:
+    name: wolpertinger
