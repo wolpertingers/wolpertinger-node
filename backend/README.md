@@ -1,4 +1,4 @@
-### Node.js backend
+# <img src="logo.png" width="100"/> Node.js backend
 
 ## Project setup
 The project is built with npm.

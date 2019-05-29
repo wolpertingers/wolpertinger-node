@@ -2,6 +2,7 @@ import { Router } from "express";
 import { Token } from "../entity/Token";
 import Status = require("http-status-codes");
 import basicAuth = require("express-basic-auth");
+import { Repository, getRepository } from "typeorm";
 import { Guid } from "guid-typescript";
 
 const router = Router();
@@ -23,11 +24,12 @@ function adminAuthorizer(username: string, password: string) {
  * Get token by value.
  */
 router.get("/:value", (req, res) => {
-  Token.findOne({
-    where: {
-      value: req.params.value
-    }
-  })
+  getRepository(Token)
+    .findOne({
+      where: {
+        value: req.params.value
+      }
+    })
     .then(token => res.status(Status.OK).send(token))
     .catch(error => res.status(Status.BAD_REQUEST).send(error));
 });
@@ -36,9 +38,11 @@ router.get("/:value", (req, res) => {
  * Create random token.
  */
 router.use(auth).post("/", (req, res) => {
-  Token.create({
-    value: Guid.create().toString()
-  })
+  const tokenRepository: Repository<Token> = getRepository(Token);
+  let token: Token = tokenRepository.create();
+  token.value = Guid.create().toString();
+  tokenRepository
+    .save(token)
     .then(token => {
       return res.status(Status.CREATED).send(token);
     })
@@ -51,7 +55,8 @@ router.use(auth).post("/", (req, res) => {
  * Get all tokens.
  */
 router.use(auth).get("/", (req, res) => {
-  Token.findAll()
+  getRepository(Token)
+    .find()
     .then(tokens => {
       return res.status(Status.OK).send(tokens);
     })

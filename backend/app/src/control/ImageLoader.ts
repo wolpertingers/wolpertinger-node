@@ -1,6 +1,7 @@
 import request = require("request");
 import { JSDOM } from "jsdom";
 import { Image } from "../entity/Image";
+import { Repository, getRepository } from "typeorm";
 
 const imageUrl: string = process.env.IMAGE_SERVER_URL;
 
@@ -37,9 +38,6 @@ function loadImages() {
  * @param name Name of the image
  */
 async function createImage(url: string, name: string) {
-  var high: string = null;
-  var medium: string = null;
-  var low: string = null;
   await request(
     url,
     {
@@ -50,24 +48,23 @@ async function createImage(url: string, name: string) {
         console.log(error);
         return;
       }
+      let image: Image = new Image();
+      image.name = name;
       const root = new JSDOM(body).window.document;
       root.querySelectorAll("li a").forEach(element => {
         var href = element.getAttribute("href");
         var fullUrl = getUrl(url + href);
         if (href.startsWith("high")) {
-          high = fullUrl;
+          image.high = fullUrl;
         } else if (href.startsWith("medium")) {
-          medium = fullUrl;
+          image.medium = fullUrl;
         } else if (href.startsWith("low")) {
-          low = fullUrl;
+          image.low = fullUrl;
         }
       });
-      Image.create({
-        name: name,
-        high: high,
-        medium: medium,
-        low: low
-      }).catch(error => console.log(error));
+      getRepository(Image)
+        .save(image)
+        .catch(error => console.log(error));
     }
   );
 }
