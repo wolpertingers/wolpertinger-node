@@ -1,7 +1,8 @@
-import { Table, Column, Model, AllowNull } from "sequelize-typescript";
+import { Table, Column, Model, AllowNull, Unique } from "sequelize-typescript";
 
 @Table
 export class Image extends Model<Image> {
+  @Unique({ name: "Image_name_unique", msg: "Image name must be unique." })
   @AllowNull(false)
   @Column
   name: string;

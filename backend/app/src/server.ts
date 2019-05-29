@@ -6,13 +6,14 @@ import { Sequelize } from "sequelize-typescript";
 import { Token } from "./entity/Token";
 import { Image } from "./entity/Image";
 import ImageLoader from "./control/ImageLoader";
+import cors = require("cors");
 
 // Database
 new Sequelize({
   database: process.env.MYSQL_DATABASE,
   username: "root",
   password: process.env.MYSQL_ROOT_PASSWORD,
-  host: "localhost",
+  host: process.env.MYSQL_HOST,
   port: 3306,
   dialect: "mariadb",
   modelPaths: [__dirname + "/entity"]
@@ -24,17 +25,17 @@ Image.sync().catch(error => console.log(error));
 ImageLoader.loadImages();
 
 // Constants
-const PORT = 8080;
-const HOST = "localhost";
+const PORT: number = Number(process.env.APP_PORT);
 
 // App
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 // Routes
 app.use("/tokens", routes.TokenResource);
 app.use("/images", routes.ImageResource);
 
-app.listen(PORT, HOST);
-console.log(`Running on http://${HOST}:${PORT}`);
+app.listen(PORT);
+console.log(`Running on port ${PORT}`);

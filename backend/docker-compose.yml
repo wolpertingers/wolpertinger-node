@@ -9,6 +9,15 @@ services:
     environment:
       MYSQL_DATABASE: wolpertinger
       MYSQL_ROOT_PASSWORD: wolpertinger
+  node:
+    container_name: wolpertinger-node
+    depends_on:
+      - mariadb
+    build:
+      context: ./app
+      dockerfile: ../Dockerfile
+    ports:
+      - 8080:8080
 networks:
   default:
     name: wolpertinger

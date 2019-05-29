@@ -22,7 +22,7 @@ function loadImages() {
             return;
           }
           var subUrl = element.getAttribute("href");
-          var imageName = subUrl.replace("/", "").replace("%20", "");
+          var imageName = subUrl.replace("/", "").replace("%20", " ");
           console.log("Found image: " + imageName);
           createImage(imageUrl + subUrl, imageName);
         }
