@@ -1,9 +1,13 @@
-import { Table, Column, Model, AllowNull, Unique } from "sequelize-typescript";
+import { Entity, Unique, Column, PrimaryGeneratedColumn } from "typeorm";
+import { IsNotEmpty } from "class-validator";
 
-@Table
-export class Token extends Model<Token> {
-  @Unique({ name: "Token_value_unique", msg: "Token has to be unique." })
-  @AllowNull(false)
-  @Column
+@Unique("Token_value_unique", token => [token.value])
+@Entity()
+export class Token {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @IsNotEmpty()
+  @Column({ readonly: true })
   value: string;
 }

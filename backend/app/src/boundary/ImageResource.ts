@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { Image } from "../entity/Image";
 import Status = require("http-status-codes");
+import { Repository, getRepository } from "typeorm";
 
 const router = Router();
 
@@ -8,7 +9,8 @@ const router = Router();
  * Get all images.
  */
 router.get("/", (req, res) => {
-  Image.findAll()
+  getRepository(Image)
+    .find()
     .then(images => {
       return res.status(Status.OK).send(images);
     })

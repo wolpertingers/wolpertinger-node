@@ -1,8 +1,6 @@
-# <img src="app/public/wolpertinger.png" width="100"/> Wolpertinger
-### Microservice to order custom shirts :shirt:
-This is the Vue.js frontend for the wolpertinger project.
+# <img src="app/public/wolpertinger.png" width="100"/> Vue.js frontend
 
-## Install dependencies and build project
+### Install dependencies and build project
 in `wolpertinger-vue/app`:
 
 ```

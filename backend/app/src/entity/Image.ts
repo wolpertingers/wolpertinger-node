@@ -1,19 +1,27 @@
-import { Table, Column, Model, AllowNull, Unique } from "sequelize-typescript";
+import { Entity, Unique, PrimaryGeneratedColumn, Column } from "typeorm";
+import { IsNotEmpty } from "class-validator";
 
-@Table
-export class Image extends Model<Image> {
-  @Unique({ name: "Image_name_unique", msg: "Image name must be unique." })
-  @AllowNull(false)
-  @Column
+@Unique("Image_name_unique", image => [image.name])
+@Unique("Image_high_unique", image => [image.high])
+@Unique("Image_medium_unique", image => [image.medium])
+@Unique("Image_low_unique", image => [image.low])
+// TODO: valid image
+@Entity()
+export class Image {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @IsNotEmpty({ message: "Image.name.NotEmpty" })
+  @Column()
   name: string;
 
-  @AllowNull(false)
-  @Column
+  @IsNotEmpty({ message: "Image.high.NotEmpty" })
+  @Column()
   high: string;
 
-  @Column
+  @Column({ nullable: true })
   medium: string;
 
-  @Column
+  @Column({ nullable: true })
   low: string;
 }
