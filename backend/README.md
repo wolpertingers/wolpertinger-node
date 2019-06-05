@@ -10,6 +10,9 @@ The project is built with npm.
 - `ADMIN_NAME`: name of the admin user for this webservice (tokens)
 - `ADMIN_PASSWORD`: password of the admin user
 - `IMAGE_SERVER_URL`: address of the apache http server with the images
+- `EMAIL_RECIPIENTS`: email addresses for order notifications
+- `EMAIL_USERNAME`: username of the support account
+- `EMAIL_PASSWORD`: password of the support account
 
 ### Development mode
 in `wolpertinger-node/app` run:
