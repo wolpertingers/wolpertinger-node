@@ -5,6 +5,10 @@ import { String } from "typescript-string-operations";
 import { ImageReference } from "@/entity/ImageReference";
 
 export default function sendEmail(order: Order) {
+  if (!process.env.EMAIL_RECIPIENTS) {
+    // no recipients - no email
+    return;
+  }
   const username: string = process.env.EMAIL_USERNAME;
   fs.readFile(__dirname + "/email.html", (err, data) => {
     if (err) {
