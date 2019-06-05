@@ -1,4 +1,5 @@
 #!/bin/bash
-npm install -f frontend/app --prefix frontend/app
-npm run build --prefix frontend/app --production
-./up.sh
+docker-compose -f apache/docker-compose.yml up --build -d
+docker-compose -f backend/docker-compose.yml up --build -d
+docker-compose -f frontend/docker-compose.yml up --build -d
+echo done
