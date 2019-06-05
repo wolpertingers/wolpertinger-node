@@ -10,7 +10,6 @@ import {
 import {
   IsNotEmpty,
   Length,
-  IsUrl,
   ArrayMinSize,
   ArrayMaxSize,
   ArrayUnique
@@ -35,11 +34,9 @@ export class Order {
   @Column({ default: false })
   visible: boolean;
 
-  @Length(0, 512, { message: "Order.comment.Length" })
   @Column({ nullable: true })
   comment: string;
 
-  @IsUrl({}, { message: "Order.url.format" })
   @Column({ nullable: true })
   url: string;
 

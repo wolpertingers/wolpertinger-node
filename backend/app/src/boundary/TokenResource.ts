@@ -4,6 +4,7 @@ import Status = require("http-status-codes");
 import basicAuth = require("express-basic-auth");
 import { Repository, getRepository } from "typeorm";
 import { Guid } from "guid-typescript";
+import { validate } from "class-validator";
 
 const router = Router();
 const auth = basicAuth({ authorizer: adminAuthorizer });
@@ -23,7 +24,7 @@ function adminAuthorizer(username: string, password: string) {
 /**
  * Get token by value.
  */
-router.get("/:value", (req, res) => {
+router.get("/:value", (req, res, next) => {
   getRepository(Token)
     .findOne({
       where: {
@@ -31,38 +32,40 @@ router.get("/:value", (req, res) => {
       }
     })
     .then(token => res.status(Status.OK).send(token))
-    .catch(error => res.status(Status.BAD_REQUEST).send(error));
+    .catch(errors => next(errors));
 });
 
 /**
  * Create random token.
  */
-router.use(auth).post("/", (req, res) => {
+router.use(auth).post("/", (req, res, next) => {
   const tokenRepository: Repository<Token> = getRepository(Token);
   let token: Token = tokenRepository.create();
   token.value = Guid.create().toString();
-  tokenRepository
-    .save(token)
-    .then(token => {
-      return res.status(Status.CREATED).send(token);
-    })
-    .catch(errors => {
-      return res.status(Status.BAD_REQUEST).send({ errors: errors });
-    });
+  validate(token).then(errors => {
+    if (errors.length > 0) {
+      next(errors);
+    } else {
+      tokenRepository
+        .save(token)
+        .then(token => {
+          return res.status(Status.CREATED).send(token);
+        })
+        .catch(errors => next(errors));
+    }
+  });
 });
 
 /**
  * Get all tokens.
  */
-router.use(auth).get("/", (req, res) => {
+router.use(auth).get("/", (req, res, next) => {
   getRepository(Token)
     .find()
     .then(tokens => {
       return res.status(Status.OK).send(tokens);
     })
-    .catch(errors => {
-      return res.status(Status.BAD_REQUEST).send({ errors: errors });
-    });
+    .catch(errors => next(errors));
 });
 
 export default router;

@@ -9,6 +9,7 @@ import { Token } from "./entity/Token";
 import { Image } from "./entity/Image";
 import { Order } from "./entity/Order";
 import { ImageReference } from "./entity/ImageReference";
+import ErrorHandler from "./boundary/error/ErrorHandler";
 
 // Database
 createConnection({
@@ -38,6 +39,9 @@ app.use(cors());
 app.use("/tokens", routes.TokenResource);
 app.use("/images", routes.ImageResource);
 app.use("/orders", routes.OrderResource);
+
+// Error handling
+app.use(ErrorHandler);
 
 const PORT: number = Number(process.env.APP_PORT);
 app.listen(PORT);
