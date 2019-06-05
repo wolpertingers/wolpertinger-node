@@ -4,6 +4,7 @@ import Status = require("http-status-codes");
 import { Repository, getRepository, DeepPartial } from "typeorm";
 import { ImageReference } from "../entity/ImageReference";
 import { validate } from "class-validator";
+import sendEmail from "../control/EmailService";
 
 const router = Router();
 
@@ -38,7 +39,12 @@ router.post("/", (req, res, next) => {
       orderRepository
         .save(order)
         .then(order => {
-          return res.status(Status.CREATED).send(order);
+          try {
+            sendEmail(order);
+            return res.status(Status.CREATED).send(order);
+          } catch (error) {
+            next(error);
+          }
         })
         .catch(errors => next(errors));
     }
