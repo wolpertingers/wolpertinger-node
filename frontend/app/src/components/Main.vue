@@ -312,6 +312,14 @@ export default {
       this.snackbar.show = true;
     },
     order() {
+      if (!this.orderer) {
+        this.showSnackbar("Name is missing.", 3000);
+        return;
+      }
+      if (!this.token) {
+        this.showSnackbar("Token is missing.", 3000);
+        return;
+      }
       axios
         .get(`${this.tokenService}/${this.token}`)
         .then(response => {
