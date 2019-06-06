@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "8a3962d8-4c6f-43b3-b1ef-3324400d4193",
+		"name": "Order",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/wolpertinger-backend/rest/orders",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/orders",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders"
+					]
+				},
+				"description": "Get all orders."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/wolpertinger-backend/rest/orders",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"images\": [\n        {\n            \"image\": {\n                \"id\": 1\n            },\n            \"level\": 1\n        },\n        {\n            \"image\": {\n                \"id\": 2\n            },\n            \"level\": 2\n        },\n        {\n            \"image\": {\n                \"id\": 3\n            },\n            \"level\": 3\n        },\n        {\n            \"image\": {\n                \"id\": 4\n            },\n            \"level\": 4\n        },\n        {\n            \"image\": {\n                \"id\": 5\n            },\n            \"level\": 5\n        },\n        {\n            \"image\": {\n                \"id\": 6\n            },\n            \"level\": 6\n        }\n    ],\n    \"visible\": true,\n    \"orderer\": \"Postman\",\n    \"token\": {\n        \"id\": 1\n    }\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/orders",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders"
+					]
+				},
+				"description": "Create new Order."
+			},
+			"response": []
+		}
+	]
+}

@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "178d5c43-0d85-4492-85cd-b719b42240b5",
-		"name": "Image.node",
+		"name": "Image",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
