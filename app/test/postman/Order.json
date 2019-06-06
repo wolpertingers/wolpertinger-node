@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "localhost:8080/wolpertinger-backend/rest/orders",
+			"name": "localhost:8080/orders",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -36,7 +36,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8080/wolpertinger-backend/rest/orders",
+			"name": "localhost:8080/orders",
 			"request": {
 				"method": "POST",
 				"header": [
