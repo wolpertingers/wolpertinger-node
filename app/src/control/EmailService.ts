@@ -2,7 +2,7 @@ import { Order } from "../entity/Order";
 import fs = require("fs");
 import nodemailer = require("nodemailer");
 import { String } from "typescript-string-operations";
-import { ImageReference } from "@/entity/ImageReference";
+import { ImageReference } from "../entity/ImageReference";
 
 export default function sendEmail(order: Order) {
   if (!process.env.EMAIL_RECIPIENTS) {

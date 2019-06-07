@@ -15,7 +15,9 @@
       "@/*": ["src/*"]
     },
     "rootDirs": ["src"],
-    "outDir": "dist"
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "include": ["./src/**/*"],
   "exclude": ["./node_modules", "./dist", "./**/*.stories.ts"]

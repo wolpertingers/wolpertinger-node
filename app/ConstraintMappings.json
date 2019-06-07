@@ -1,0 +1,72 @@
+{
+    "wolpertinger.validation.Image": {
+        "message": "Low resolution can only be set if medium resolution is set."
+    },
+    "Image.name.NotEmpty": {
+        "message": "Name of the image is mandatory."
+    },
+    "Image.high.NotEmpty": {
+        "message": "High resolution path has to be set."
+    },
+    "Order.orderer.NotNull": {
+        "message": "Name of the orderer is mandatory."
+    },
+    "Order.orderer.Length": {
+        "message": "Name has to be between 3 and 100 letters long."
+    },
+    "Order.visible.NotNull": {
+        "message": "Visibility flag must be set."
+    },
+    "Order.token.NotNull": {
+        "message": "Token is needed for order creation."
+    },
+    "ImageReference.image.NotNull": {
+        "message": "Image must be referenced."
+    },
+    "ImageReference.level.NotNull": {
+        "message": "Level has to be set."
+    },
+    "ImageReference.level.Range": {
+        "message": "Level has to range from 1 to 6."
+    },
+    "Image.name.unique": {
+        "field": "name",
+        "message": "Name of the image already taken."
+    },
+    "Image.high.unique": {
+        "field": "high",
+        "message": "High resolution path can only be referenced once."
+    },
+    "Image.medium.unique": {
+        "field": "high",
+        "message": "Medium resolution path can only be referenced once."
+    },
+    "Image.low.unique": {
+        "field": "high",
+        "message": "Low resolution path can only be referenced once."
+    },
+    "Order.orderer.unique": {
+        "field": "orderer",
+        "message": "Orderer name must be unique."
+    },
+    "Order.configuration.unique": {
+        "field": "configuration",
+        "message": "This configuration has already been created."
+    },
+    "ImageReference.level.unique": {
+        "field": "images",
+        "message": "Image reference level is contained more than once."
+    },
+    "ImageReference.image.unique": {
+        "field": "images",
+        "message": "Image is referenced more than once."
+    },
+    "Token.value.unique": {
+        "field": "value",
+        "message": "Token has to be unique."
+    },
+    "Order.token.unique": {
+        "field": "token",
+        "message": "A token can only be referenced once."
+    }
+}

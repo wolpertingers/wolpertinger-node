@@ -1,5 +1,6 @@
-export class ConstraintMapping {
-  name: string;
-  field: string;
-  message: string;
+export default interface ConstraintMapping {
+  [key: string]: {
+    message: string;
+    field?: string;
+  };
 }

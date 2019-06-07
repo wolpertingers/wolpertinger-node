@@ -1,10 +1,10 @@
 import { Entity, Unique, PrimaryGeneratedColumn, Column } from "typeorm";
 import { IsNotEmpty } from "class-validator";
 
-@Unique("Image_name_unique", image => [image.name])
-@Unique("Image_high_unique", image => [image.high])
-@Unique("Image_medium_unique", image => [image.medium])
-@Unique("Image_low_unique", image => [image.low])
+@Unique("Image.name.unique", image => [image.name])
+@Unique("Image.high.unique", image => [image.high])
+@Unique("Image.medium.unique", image => [image.medium])
+@Unique("Image.low.unique", image => [image.low])
 // TODO: valid image
 @Entity()
 export class Image {
