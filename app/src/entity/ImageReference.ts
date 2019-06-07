@@ -3,19 +3,18 @@ import {
   Entity,
   Unique,
   Column,
-  Not,
   JoinTable,
   ManyToOne
 } from "typeorm";
-import { IsInt, IsEmpty, IsNotEmpty, Min, Max } from "class-validator";
+import { IsNotEmpty, Min, Max } from "class-validator";
 import { Image } from "./Image";
 import { Order } from "./Order";
 
-@Unique("ImageReference_image_unique", reference => [
+@Unique("ImageReference.image.unique", reference => [
   reference.image,
   reference.order
 ])
-@Unique("ImageReference_level_unique", reference => [
+@Unique("ImageReference.level.unique", reference => [
   reference.level,
   reference.order
 ])

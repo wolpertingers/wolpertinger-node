@@ -17,9 +17,9 @@ import {
 import { Token } from "./Token";
 import { ImageReference } from "./ImageReference";
 
-@Unique("Order_orderer_unique", order => [order.orderer])
-@Unique("Order_configuration_unique", order => [order.configuration])
-@Unique("Order_token_unique", order => [order.token])
+@Unique("Order.orderer.unique", order => [order.orderer])
+@Unique("Order.configuration.unique", order => [order.configuration])
+@Unique("Order.token.unique", order => [order.token])
 @Entity()
 export class Order {
   @PrimaryGeneratedColumn()

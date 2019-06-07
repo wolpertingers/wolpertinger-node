@@ -1,11 +1,9 @@
 import * as Collections from "typescript-collections";
 import { ValidationError } from "class-validator";
 import { Error } from "./Error";
-import PropertiesReader = require("properties-reader");
+import ConstraintMapping from "./ConstraintMapping";
 
-const properties = PropertiesReader(
-  __dirname + "/ValidationMessages.properties"
-);
+const mappings: ConstraintMapping = require("../../../ConstraintMappings");
 
 /**
  * Map constraint validation error to list of Errors.
@@ -26,11 +24,7 @@ export function fromValidationError(
   return errors;
 }
 
-/**
- * Find value of a given property.
- * @param template Property name.
- */
 function getMessage(template: string): string {
-  let property = properties.get(template);
-  return typeof property == "string" ? property : template;
+  let mapping = mappings[template];
+  return typeof mapping == "object" ? mapping.message : template;
 }
