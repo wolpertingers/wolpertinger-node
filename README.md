@@ -34,3 +34,20 @@ in `wolpertinger-node/app/.env`:
 ### Validation messages
 
 Translations of error codes can be configured in `wolpertinger-node/app/ConstraintMappings.json`
+
+## Rest-API
+
+### Image service
+GET all: `{deployUrl}/images`
+
+### Order service
+GET all: `{deployUrl}/orders`
+
+POST to create: `{deployUrl}/orders`
+
+### Token service
+POST to create: (protected) `{deployUrl}/tokens` (no data body)
+
+GET all: (protected) `{deployUrl}/tokens`
+
+GET by value: `{deployUrl}/tokens/{value}`
